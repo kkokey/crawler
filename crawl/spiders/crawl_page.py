@@ -19,22 +19,8 @@ class CrawlPageSpider(scrapy.Spider):
 			start_urls = ['http://www.coupang.com/np/categories/118142/']
 			yield scrapy.Request(start_urls[0], self.parse)
 
-#if not os.pathisdir(dirName):
-#os.mkdir(dirName)
-
 		def parse(self, response):
 				
-#		for product in response.xpath("//dl[@class='baby-product-wrap']"):
-#			name = product.xpath('//dd[@class="name"]//text()').extract()
-#			uStr = unicodedata.normalize('NFKD', name[2]).encode('ascii','ignore')
-#			print uStr
-#			yield {
-#				'p-value': name
-#			}
-
-
-#		rsData = response.css('ul.baby-product-list dl.baby-product-wrap')
-#		print rsData[0]
 			todayDate = datetime.today()
 			itemList = {}
 			i = 0
@@ -55,7 +41,7 @@ class CrawlPageSpider(scrapy.Spider):
 				i = i + 1
 
 			# make file
-			dirname = "crawl_data/coupang"
+			dirname = "data/coupang"
 			makeFolder(dirname)
 
 			jsonOut = json.dumps(itemList, sort_keys=True, indent=2, ensure_ascii=False)
