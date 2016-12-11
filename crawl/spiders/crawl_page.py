@@ -25,7 +25,7 @@ class CrawlPageSpider(scrapy.Spider):
 			itemList = {}
 			i = 0
 
-			print sys.stdout.encoding
+#print sys.stdout.encoding
 
 			for product in response.css('ul.baby-product-list dl.baby-product-wrap'):
 				name = product.css('dd.name::text').extract()

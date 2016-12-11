@@ -10,6 +10,6 @@ def makeFolder(dirName):
 	fullDir = "./"
 	for name in dirNameArr:
 		fullDir = fullDir + "/" + name
-		print fullDir
+#print fullDir
 		if not os.path.exists(fullDir):
 				os.makedirs(fullDir)
