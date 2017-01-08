@@ -1,9 +1,8 @@
 import mysql.connector
 import ConfigParser
-from distutils.util import strtobool
 
 ppConfig = ConfigParser.RawConfigParser()
-ppConfig.read('/usr/local/crawler/config.properties')
+ppConfig.read(r'../config.properties')
 
 #config = {
 #	'user': configUser,
