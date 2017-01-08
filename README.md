@@ -7,3 +7,7 @@
 ### #Next Plan
  
  - Connect Database
+
+### #Command
+
+ - scrapy crawl crawl_page 
