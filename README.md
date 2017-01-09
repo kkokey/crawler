@@ -6,7 +6,8 @@
 
 ### #Next Plan
  
- - Connect Database
+ - Connect Database (2017.01.10 Complete)
+ - Save Data to DB
 
 ### #Command
 
