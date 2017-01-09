@@ -6,21 +6,23 @@ import unicodedata
 import codecs
 import json
 from datetime import datetime
-sys.path.append(os.path.abspath("./"))
 from makeFolder import *
+from db_conn import *
 
+sys.path.append(os.path.abspath("./"))
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 class CrawlPageSpider(scrapy.Spider):
 		name = "crawl_page"
+		
 		def start_requests(self):
 			allowed_domains = ["coupang.com/np/categories/118142"]
 			start_urls = ['http://www.coupang.com/np/categories/118142/']
 			yield scrapy.Request(start_urls[0], self.parse)
 
+		
 		def parse(self, response):
-				
 			todayDate = datetime.today()
 			itemList = {}
 			i = 0
@@ -38,7 +40,7 @@ class CrawlPageSpider(scrapy.Spider):
 
 				i = i + 1
 
-			# make file
+			### make file
 			dirname = "data/coupang"
 			makeFolder(dirname)
 
@@ -50,5 +52,13 @@ class CrawlPageSpider(scrapy.Spider):
 			self.file.write(line)
 			self.file.close()
 
+			print("### connect database")
+			dbConn = dbConnection(self)
+			dbConfig = dbConn.getConfig()
+			cnx = dbConn.getDbPool(dbConfig)
+			dbConn.selectQuery(cnx, "")
+			dbConn.close(cnx)
+			print("### disconnect database")
+	
 
 

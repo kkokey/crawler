@@ -8,4 +8,4 @@
 
 class CrawlPipeline(object):
     def process_item(self, item, spider):
-        return item
+        yield item
