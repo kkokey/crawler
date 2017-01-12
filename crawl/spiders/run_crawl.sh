@@ -9,5 +9,3 @@ else
 	echo -e $PW+"\n" | sudo -S scrapy crawl crawl_page
 fi
 
-echo -e $PW+"\n" | sudo -S scrapy crawl crawl_page
-

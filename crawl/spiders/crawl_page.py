@@ -47,11 +47,13 @@ class CrawlPageSpider(scrapy.Spider):
 			jsonOut = json.dumps(itemList, sort_keys=True, indent=2, ensure_ascii=False)
 			jsonOut = jsonOut.replace('\\n                    ','')
 			jsonOut = jsonOut.replace('\\n                ','')
+			jsonObj = json.loads(jsonOut)
 			self.file = codecs.open(dirname+'/page_'+str(todayDate)+'.json', 'w', encoding='utf-8')
 			line = jsonOut + "\n"
 			self.file.write(line)
 			self.file.close()
 
+			print(jsonObj['0']['p-name'])
 			print("### connect database")
 			dbConn = dbConnection(self)
 			dbConfig = dbConn.getConfig()
