@@ -46,6 +46,12 @@ class dbConnection():
 
 		yield cursor
 
+	def insertQuery(self, cnx, insQuery):
+		cursor = cnx.cursor()
+		rs = cursor.execute(insQuery)
+
+		yield rs
+
 	def close(self, cnx):
 		cnx.close()
 	

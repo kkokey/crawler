@@ -21,7 +21,21 @@ class CrawlPageSpider(scrapy.Spider):
 			start_urls = ['http://www.coupang.com/np/categories/118142/']
 			yield scrapy.Request(start_urls[0], self.parse)
 
-		
+		def dataToJsonFile(self, rowData):
+			dirname = "data/coupang"
+			todayDate = datetime.today()
+			makeFolder(dirname)
+
+			jsonOut = json.dumps(rowData, sort_keys=True, indent=2, ensure_ascii=False)
+			jsonOut = jsonOut.replace('\\n                    ','')
+			jsonOut = jsonOut.replace('\\n                ','')
+			jsonObj = json.loads(jsonOut)
+			self.file = codecs.open(dirname+'/page_'+str(todayDate)+'.json', 'w', encoding='utf-8')
+			line = jsonOut + "\n"
+			self.file.write(line)
+			self.file.close()
+			print(jsonObj['0']['p-name'])
+
 		def parse(self, response):
 			todayDate = datetime.today()
 			itemList = {}
@@ -41,19 +55,8 @@ class CrawlPageSpider(scrapy.Spider):
 				i = i + 1
 
 			### make file
-			dirname = "data/coupang"
-			makeFolder(dirname)
+			self.dataToJsonFile(itemList)
 
-			jsonOut = json.dumps(itemList, sort_keys=True, indent=2, ensure_ascii=False)
-			jsonOut = jsonOut.replace('\\n                    ','')
-			jsonOut = jsonOut.replace('\\n                ','')
-			jsonObj = json.loads(jsonOut)
-			self.file = codecs.open(dirname+'/page_'+str(todayDate)+'.json', 'w', encoding='utf-8')
-			line = jsonOut + "\n"
-			self.file.write(line)
-			self.file.close()
-
-			print(jsonObj['0']['p-name'])
 			print("### connect database")
 			dbConn = dbConnection(self)
 			dbConfig = dbConn.getConfig()
