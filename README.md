@@ -15,4 +15,4 @@
 
 ### #P.S
 
- - Slow but never stop.
+ - Slow, but never stop.
