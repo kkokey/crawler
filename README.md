@@ -12,3 +12,7 @@
 ### #Command
 
  - scrapy crawl crawl_page 
+
+### #P.S
+
+ - Slow but never stop.
