@@ -9,3 +9,12 @@ else
 	echo -e $PW+"\n" | sudo -S scrapy crawl crawl_page
 fi
 
+
+## Add Log
+if [ -d "/usr/local/crawl/crawler/crawl/spiders/data" ]; then
+	echo "Make log file"
+	if [ -f "/usr/local/crawl/crawler/crawl/spiders/data/cron.log" ]; then
+		date >> ./data/cron.log
+	fi
+fi
+
